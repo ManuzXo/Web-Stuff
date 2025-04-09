@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Interazione con la Pagina",
+  "name": "Resources Application",
   "version": "1.0",
-  "description": "Un'estensione che aggiunge un elemento HTML alla pagina e interagisce con essa.",
+  "description": "Espone i dati di localstorage e cookie",
   "permissions": ["activeTab"],
   "content_scripts": [
     {
@@ -10,5 +10,10 @@
       "js": ["js/content.js"],
       "css": ["css/popup.css", "css/button.css"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
 }
