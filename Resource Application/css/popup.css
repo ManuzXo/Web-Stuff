@@ -1,0 +1,110 @@
+.popup{
+    position: fixed;
+    width: 1226px;
+    height: 781px;
+    background-color: rgb(0, 0, 0);
+    left: 227px;
+    top: 76.5px;
+    padding: 1%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 1px;
+    border-color: red;
+    z-index: 10000;
+    cursor: grab;
+}
+.popup.show{
+    display: flex;
+}
+
+.popup .popup-resizer{
+    position: absolute;
+}
+
+.popup .popup-resizer-right{
+    height: 100%;
+    width: 5px;
+    right: 0px;
+    top: 0px;
+    cursor: col-resize;
+}
+
+.popup .popup-resizer-bottom{
+    height: 5px;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    cursor: row-resize;
+}
+
+.popup .popup-title-container{
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+.popup-title-container .popup-title{
+    color: white;
+    user-select: none;
+    font-size: large;
+}
+.popup .popup-body-container{
+    width: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.popup-body-container .popup-section-container{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.popup-section-container .popup-section-head{
+    text-align: center;
+    background-color: rgb(150, 169, 96);
+    width: 100%;
+    height: auto;
+    color: white;
+    border: 1px solid white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 1.3rem;
+    padding: 1%;
+}
+.popup-section-container .popup-section-body{
+    background-color: rgb(61, 61, 61);
+    width: 100%;
+    height: auto;
+    color: white;
+    border: 1px solid white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 1%;
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+    overflow-wrap: break-word;
+}
+.popup-section-body .data-container{
+    margin-bottom: 2px;
+    cursor: pointer;
+    pointer-events: none;
+}
+.data-container .data-key{
+    color: yellow;
+    margin-right: 4px;
+}
+.data-key:after{
+    content: ":";
+}
+
+.data-container .data-value{
+    color: white;
+}
+.data-value.modified{
+    color: orange;
+}
+.data-value.removed{
+    color: red;
+}

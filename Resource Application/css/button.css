@@ -1,0 +1,33 @@
+
+.open-btn{
+    font-size: xx-large;
+    position: fixed;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: greenyellow;
+    top: 90%;
+    right: 40px;
+    display: none;
+    place-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+}
+.open-btn::before{
+    content: "⚙️";
+}
+.open-btn.show{
+    display: flex;
+}
+.close-btn{
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: medium;
+    cursor: pointer;
+}
+.close-btn::before{
+    content: "❌";
+}

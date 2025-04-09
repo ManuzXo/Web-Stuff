@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Interazione con la Pagina",
+  "version": "1.0",
+  "description": "Un'estensione che aggiunge un elemento HTML alla pagina e interagisce con essa.",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content.js"],
+      "css": ["css/popup.css", "css/button.css"]
+    }
+  ]
+}
