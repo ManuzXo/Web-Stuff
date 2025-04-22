@@ -1,2 +1,2 @@
 # Web-Stuff
-Contiene dell'estensioni per i browser
+Contiene progetti per il web
