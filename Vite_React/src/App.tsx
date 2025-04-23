@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import './css/icon.css';
 import NavigationMenu from './menu/NavigationMenu';
 import SectionData from './menu/Sections';
 import Home from './Home';

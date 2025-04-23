@@ -1,0 +1,16 @@
+.btn {
+    background-color: #555555;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .btn-lg {
+    padding: 1rem;
+  }
+  
+  .btn-rounded {
+    border-radius: 50%;
+  }

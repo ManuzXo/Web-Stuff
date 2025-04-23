@@ -11,16 +11,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --navmenu-bc: black;
+  --panel-border-color: rgba(255, 255, 255, 0.28);
+  --card-header-bc: #eaeaea;
 }
 
 html[data-theme='light'] {
   color: #213547;
   background-color: #ffffff;
+  --panel-border-color: rgba(0, 0, 0, 0.28);
+  --card-header-bc: #eaeaea;
+
 }
 
 html[data-theme='dark'] {
   color: #ffffff;
   background-color:  #56565685;
+  --panel-border-color: rgba(255, 255, 255, 0.28);
+  --card-header-bc: #434447;
 }
 
 /* ---------- LAYOUT STRUCTURE ---------- */
@@ -52,13 +59,7 @@ main {
 }
 
 /* ---------- FOOTER ---------- */
-/* footer {
-  background-color: gray;
-  padding: 1rem;
-  text-align: center;
-  flex-shrink: 0;
-  color: white;
-} */
+
 footer {
   position:fixed;
   bottom: 0;
@@ -70,79 +71,4 @@ footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-/* ---------- NAVIGATION MENU ---------- */
-.navigation-menu-container {
-  max-width: 100%;
-  width: 100%;
-  background-color: var(--navmenu-bc);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navigation-menu {
-  list-style-type: none;
-  padding: 0.4rem;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  flex: 1;
-}
-
-.navigation-menu li {
-  margin: 0 1rem;
-  font-size: 1.2rem;
-}
-
-.navigation-menu a {
-  color: white;
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: border-bottom 0.3s ease;
-}
-
-.navigation-menu a:hover,
-.navigation-menu a.click {
-  border-bottom: 2px solid rgb(0, 102, 255);
-}
-
-/* ---------- BUTTONS ---------- */
-.btn {
-  background-color: #555555;
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.btn-lg {
-  padding: 1rem;
-}
-
-.btn-rounded {
-  border-radius: 50%;
-}
-
-/* ---------- PANELS ---------- */
-.panel {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.panel>.panel-header {
-  border-bottom: 2px solid rgba(143, 143, 143, 0.4);
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
-  color: black;
 }

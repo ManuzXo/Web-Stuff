@@ -1,0 +1,21 @@
+.grid-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* padding: 1rem; */
+  }
+  
+  .grid-container > .grid-item {
+    padding: 1rem;
+    flex: 1 1 auto;
+  }
+  .grid-item-100 {
+    flex-basis: 100px;
+  }
+  .grid-item-200 {
+    flex-basis: 200px;
+  }
+  .grid-item-300 {
+    flex-basis: 300px;
+  }

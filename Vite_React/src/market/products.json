@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Mela",
+        "price": 1.5,
+        "description": "Una mela fresca e croccante.",
+        "image": "https://media.istockphoto.com/id/95761550/it/foto/mela-verde.jpg?s=612x612&w=0&k=20&c=-oOXIzsbMoiNzFz53ks-TJBLfGXUXas_GWMcEVpjDzk="
+    },
+    {
+        "name": "Banana",
+        "price": 0.5,
+        "description": "Una banana dolce e matura.",
+        "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
+    },
+    {
+        "name": "Pera",
+        "price": 1.2,
+        "description": "Una pera succosa e dolce.",
+        "image": "https://media.istockphoto.com/id/529401513/it/foto/pere.jpg?s=612x612&w=0&k=20&c=4O7UxfjriP35SfIN1ab5Q5td0_luiCpl37HbCbq4ZCM="
+    },
+    {
+        "name": "Arancia",
+        "price": 1.0,
+        "description": "Un'arancia ricca di vitamina C.",
+        "image": "https://fructital.it/wp-content/uploads/2019/01/arancia.jpg"
+    },
+    {
+        "name": "Uva",
+        "price": 2.0,
+        "description": "Un grappolo di uva dolce e succosa.",
+        "image": "https://media.istockphoto.com/id/172304886/it/foto/grappolo-di-uva-verde-portata.jpg?s=612x612&w=0&k=20&c=nvKa76K4bBvYlIoI0EHmqttB-W32jqJa3uZmhaEBtSM="
+    },
+    {
+        "name": "Fragola",
+        "price": 3.0,
+        "description": "Fragole fresche e deliziose.",
+        "image": "https://media.istockphoto.com/id/1412854156/it/foto/fragole-isolate-fragola-intera-e-mezza-su-sfondo-bianco-fetta-di-fragola-con-tracciato-di.jpg?s=612x612&w=0&k=20&c=o71nJp1JYtw_mOF3sTir0ZVcPW7H479FxToWnyYar9M="
+    }
+]

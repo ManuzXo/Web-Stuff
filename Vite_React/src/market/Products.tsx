@@ -1,22 +1,47 @@
 import React from "react";
 import "./Products.css";
+import foods from "./products.json";
+interface Food {
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+}
 class Products extends React.Component {
-    state = {
-        data: ["Mela", "Banana", "Pera"],
-    };
-    render(): React.ReactNode {
+     render(): React.ReactNode {
         return (
             <>
-                <ul className="list-products">
-                    {this.getListProducts()}
-                </ul>
+                <div className="panel">
+                    <div className="panel-header">
+                        <label>Products</label>
+                    </div>
+                    <div className="panel-body">
+                        <div className="grid-container">
+                            {this.getProducts()}
+                        </div>
+                    </div>
+                </div>
             </>
         )
     }
-   
-    getListProducts = () => {
-        return this.state.data.map((item, index) => {
-            return <li key={index}>{item}</li>;
+
+     getProducts =  () => {
+        return foods.map((food: Food, index:number) => {
+            return (
+                <div key={index} className="grid-item-200">
+                    <div className="card">
+                        <div className="card-header">
+                            <span>{food.name}</span> 
+                            <span> </span>
+                            <span style={{textDecoration: "underline", fontSize: "1rem"}}>{food.price}€</span>
+                        </div>
+                        <div className="card-body">
+                            <label>{food.description}</label>
+                            <img src={food.image}></img>
+                        </div>
+                    </div>
+                </div>
+            )
         });
     }
 }

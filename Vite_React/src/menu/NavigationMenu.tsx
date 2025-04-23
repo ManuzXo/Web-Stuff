@@ -71,10 +71,7 @@ class NavigationMenu extends React.Component {
     };
 
     getScrollButtonClass = (direction: 'left' | 'right') => {
-        let _baseClass = `scroll-button ${direction} `;
-        if(this.state.showScrollButtons === false)
-            _baseClass += "hide";
-        return _baseClass;
+        return`scroll-button ${direction} ${this.state.showScrollButtons ? '' : 'hide'}`;
     }
 
     setActiveIndex = (index: number) => {
