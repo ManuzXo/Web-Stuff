@@ -30,7 +30,7 @@ class NavigationMenu extends React.Component {
     render(): React.ReactNode {
         return (
             <nav className="navigation-menu-container">
-                <button className={this.GetScrollButtonClass("left")} onClick={() => this.scrollMenu("left")}>←</button>
+                <button className={this.getScrollButtonClass("left")} onClick={() => this.scrollMenu("left")}>←</button>
                 <div className="navigation-scroll-wrapper">
                     <ul className="navigation-menu">
                         {
@@ -43,7 +43,7 @@ class NavigationMenu extends React.Component {
                             ))}
                     </ul>
                 </div>
-                <button className={this.GetScrollButtonClass("right")} onClick={() => this.scrollMenu("right")}>→</button>
+                <button className={this.getScrollButtonClass("right")} onClick={() => this.scrollMenu("right")}>→</button>
             </nav>
         );
     }
@@ -69,7 +69,7 @@ class NavigationMenu extends React.Component {
         }
     };
 
-    GetScrollButtonClass = (direction: 'left' | 'right') => {
+    getScrollButtonClass = (direction: 'left' | 'right') => {
         let _baseClass = `scroll-button ${direction} `;
         if(this.state.showScrollButtons === false)
             _baseClass += "hide";
