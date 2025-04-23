@@ -53,7 +53,7 @@ function App() {
             </Routes>
           </main>
         </BrowserRouter>
-        {Footer()}
+        <Footer></Footer>
       </div >
     </>
   );
