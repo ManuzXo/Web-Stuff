@@ -69,6 +69,6 @@
   
   .navigation-menu a:hover,
   .navigation-menu a.click {
-    border-bottom: 2px solid rgb(0, 102, 255);
+    border-bottom: 2px solid white;
   }
   
