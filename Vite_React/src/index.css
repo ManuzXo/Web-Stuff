@@ -16,13 +16,11 @@
 html[data-theme='light'] {
   color: #213547;
   background-color: #ffffff;
-  --navmenu-bc: black;
 }
 
 html[data-theme='dark'] {
   color: #ffffff;
-  background-color: #242424;
-  --navmenu-bc: #555555;
+  background-color:  #56565685;
 }
 
 /* ---------- LAYOUT STRUCTURE ---------- */
