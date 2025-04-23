@@ -33,7 +33,7 @@ class Products extends React.Component {
                         <div className="card-header">
                             <span>{food.name}</span> 
                             <span> </span>
-                            <span style={{textDecoration: "underline", fontSize: "1rem"}}>{food.price}€</span>
+                            <span className="food-price">{food.price}€</span>
                         </div>
                         <div className="card-body">
                             <label>{food.description}</label>
