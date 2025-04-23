@@ -10,5 +10,7 @@ var SectionData = [
         "content": <Products></Products>
     }
 ];
-
+for(let i = 2; i < 20; i++) {
+    // SectionData[i] = SectionData[1];
+}
 export default SectionData;

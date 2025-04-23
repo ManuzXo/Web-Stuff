@@ -30,7 +30,7 @@ class NavigationMenu extends React.Component {
     render(): React.ReactNode {
         return (
             <nav className="navigation-menu-container">
-                <button className={this.GetScrollButtonClass()} onClick={() => this.scrollMenu("left")}>←</button>
+                <button className={this.GetScrollButtonClass("left")} onClick={() => this.scrollMenu("left")}>←</button>
                 <div className="navigation-scroll-wrapper">
                     <ul className="navigation-menu">
                         {
@@ -43,7 +43,7 @@ class NavigationMenu extends React.Component {
                             ))}
                     </ul>
                 </div>
-                <button className={this.GetScrollButtonClass()} onClick={() => this.scrollMenu("right")}>→</button>
+                <button className={this.GetScrollButtonClass("right")} onClick={() => this.scrollMenu("right")}>→</button>
             </nav>
         );
     }
@@ -64,12 +64,16 @@ class NavigationMenu extends React.Component {
         const container = document.querySelector('.navigation-scroll-wrapper');
         if (container) {
             const hasOverflow = container.scrollWidth > container.clientWidth;
+            console.log('Has overflow:', hasOverflow, container.scrollWidth , container.clientWidth);
             this.setState({ showScrollButtons: hasOverflow });
         }
     };
 
-    GetScrollButtonClass = () => {
-        return this.state.showScrollButtons ? 'scroll-button' : 'scroll-button hide';
+    GetScrollButtonClass = (direction: 'left' | 'right') => {
+        let _baseClass = `scroll-button ${direction} `;
+        if(this.state.showScrollButtons === false)
+            _baseClass += "hide";
+        return _baseClass;
     }
 
     setActiveIndex = (index: number) => {
