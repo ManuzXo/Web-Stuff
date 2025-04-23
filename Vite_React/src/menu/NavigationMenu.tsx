@@ -40,7 +40,8 @@ class NavigationMenu extends React.Component {
                                         {section.title}
                                     </Link>
                                 </li>
-                            ))}
+                            ))
+                        }
                     </ul>
                 </div>
                 <button className={this.getScrollButtonClass("right")} onClick={() => this.scrollMenu("right")}>→</button>

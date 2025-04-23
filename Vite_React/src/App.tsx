@@ -32,12 +32,14 @@ function Footer() {
 
   return (
     <footer>
-      <button
-        className="btn btn-rounded"
-        onClick={toggleTheme}
-        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}>
-        <i className={isDarkMode ? "gg-sun" : "gg-moon"}></i>
-      </button>
+      <div style={{margin: ".5rem"}}>
+          <button
+            className="btn btn-rounded"
+            onClick={toggleTheme}
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}>
+            <i className={isDarkMode ? "gg-sun" : "gg-moon"}></i>
+          </button>
+        </div>
     </footer>
   );
 }
@@ -47,10 +49,11 @@ function App() {
   return (
     <>
       <div className="app-container">
-        <BrowserRouter>
+        <BrowserRouter basename={window.location.hostname === "localhost" ? undefined : "/Vite_React"}>
           <NavigationMenu />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="" element={<main><Home /></main>} />
+            <Route path="/" element={<main><Home /></main>} />
             {SectionsRute()}
           </Routes>
         </BrowserRouter>

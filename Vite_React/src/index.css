@@ -62,16 +62,13 @@ main {
   color: white;
 } */
 footer {
-  background-color: gray;
-  padding: 0.2rem 1rem;
+  position:fixed;
+  bottom: 0;
+  background-color: inherit;
   text-align: center;
   flex-shrink: 0;
   color: white;
-  /* overflow: hidden; */
-  /* 👈 evita che roba esca visivamente */
-  max-width: 100%;
-  /* 👈 se serve con layout strani */
-  /* max-height: 10px; */
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
