@@ -12,13 +12,7 @@ function SectionsRute() {
     <Route
       key={index}
       path={section.title.toLowerCase()}
-      element={
-        <>
-          <main>
-            {section.content}
-          </main>
-        </>
-      }
+      element={section.content}
     />
   ));
 }
@@ -32,14 +26,14 @@ function Footer() {
 
   return (
     <footer>
-      <div style={{margin: ".5rem"}}>
-          <button
-            className="btn btn-rounded"
-            onClick={toggleTheme}
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}>
-            <i className={isDarkMode ? "gg-sun" : "gg-moon"}></i>
-          </button>
-        </div>
+      <div style={{ margin: ".5rem" }}>
+        <button
+          className="btn btn-rounded"
+          onClick={toggleTheme}
+          aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}>
+          <i className={isDarkMode ? "gg-sun" : "gg-moon"}></i>
+        </button>
+      </div>
     </footer>
   );
 }
@@ -51,11 +45,13 @@ function App() {
       <div className="app-container">
         <BrowserRouter basename={window.location.hostname === "localhost" ? undefined : "/Vite_React"}>
           <NavigationMenu />
-          <Routes>
-            <Route path="" element={<main><Home /></main>} />
-            <Route path="/" element={<main><Home /></main>} />
-            {SectionsRute()}
-          </Routes>
+          <main>
+            <Routes>
+              <Route path="" element={<Home />} />
+              <Route path="/" element={<Home />} />
+              {SectionsRute()}
+            </Routes>
+          </main>
         </BrowserRouter>
         {Footer()}
       </div >
