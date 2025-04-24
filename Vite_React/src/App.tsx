@@ -50,7 +50,6 @@ function App() {
         <BrowserRouter basename={window.location.hostname === "localhost" ? undefined : "/Vite_React"}>
           <NavigationMenu />
           <main>
-          {/* <Spinner></Spinner> */}
             <Routes>
               {SectionsRute()}
             </Routes>
