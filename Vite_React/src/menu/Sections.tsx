@@ -3,7 +3,7 @@
 import React from "react";
 const Home = React.lazy(() => import("../Home"));
 const Products = React.lazy(() => import("../market/Products"));
-var SectionData = [
+const SectionData = [
     {
         "title": "",
         "content": <Home></Home>,
@@ -23,7 +23,4 @@ var SectionData = [
         "content": <Products></Products>
     }
 ];
-for(let i = SectionData.length; i < 20; i++) {
-    //  SectionData[i] = SectionData[1];
-}
 export default SectionData;

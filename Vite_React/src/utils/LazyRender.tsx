@@ -28,7 +28,7 @@ class LazyRender extends React.Component<{ className?: string, children: React.R
                 if(this.ref.current){
                     this.isObserver = true;
                     this.observer?.observe(this.ref.current);
-                } 
+                }
         }, 50);
     }
     componentWillUnmount(): void {
