@@ -1,6 +1,19 @@
-import Home from "../Home";
-import Products from "../market/Products";
+// import Home from "../Home";
+// import Products from "../market/Products";
+import React from "react";
+const Home = React.lazy(() => import("../Home"));
+const Products = React.lazy(() => import("../market/Products"));
 var SectionData = [
+    {
+        "title": "",
+        "content": <Home></Home>,
+        "excludeNavigation": true
+    },
+    {
+        "title": "/",
+        "content": <Home></Home>,
+        "excludeNavigation": true
+    },
     {
         "title": "Home",
         "content": <Home></Home>

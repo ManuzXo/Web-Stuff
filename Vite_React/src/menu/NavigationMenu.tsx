@@ -35,11 +35,13 @@ class NavigationMenu extends React.Component {
                     <ul className="navigation-menu">
                         {
                             SectionData.map((section, index) => (
-                                <li key={index} onClick={() => this.setActiveIndex(index)}>
-                                    <Link to={section.title} className={this.state.activeIndex === index ? 'click' : ''}>
-                                        {section.title}
-                                    </Link>
-                                </li>
+                                section.excludeNavigation === true ? null : (
+                                    <li key={index} onClick={() => this.setActiveIndex(index)}>
+                                        <Link to={section.title} className={this.state.activeIndex === index ? 'click' : ''}>
+                                            {section.title}
+                                        </Link>
+                                    </li>
+                                )
                             ))
                         }
                     </ul>
@@ -65,13 +67,13 @@ class NavigationMenu extends React.Component {
         const container = document.querySelector('.navigation-scroll-wrapper');
         if (container) {
             const hasOverflow = container.scrollWidth > container.clientWidth;
-            console.log('Has overflow:', hasOverflow, container.scrollWidth , container.clientWidth);
+            console.log('Has overflow:', hasOverflow, container.scrollWidth, container.clientWidth);
             this.setState({ showScrollButtons: hasOverflow });
         }
     };
 
     getScrollButtonClass = (direction: 'left' | 'right') => {
-        return`scroll-button ${direction} ${this.state.showScrollButtons ? '' : 'hide'}`;
+        return `scroll-button ${direction} ${this.state.showScrollButtons ? '' : 'hide'}`;
     }
 
     setActiveIndex = (index: number) => {

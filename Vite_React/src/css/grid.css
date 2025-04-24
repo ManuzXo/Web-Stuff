@@ -7,23 +7,18 @@
   }
   
   .grid-container > .grid-item {
-    padding: 1rem;
     flex: 1 1 auto;
     max-width: 100%;
   }
   .grid-item-100 {
-    flex-basis: 100px;
-    max-width: 100%;
+    flex-basis: 100px !important;
   }
   .grid-item-150 {
-    flex-basis: 150px;
-    max-width: 100%;
+    flex-basis: 150px !important;
   }
   .grid-item-200 {
-    flex-basis: 200px;
-    max-width: 100%;
+    flex-basis: 200px !important;
   }
   .grid-item-300 {
-    flex-basis: 300px;
-    max-width: 100%;
+    flex-basis: 300px !important;
   }

@@ -1,17 +1,20 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
+import { Suspense, useState } from 'react';
 import NavigationMenu from './menu/NavigationMenu';
 import SectionData from './menu/Sections';
-import Home from './Home';
 import WebStyling from './style/WebStyling';
-import { useState } from 'react';
+import './App.css';
 
 function SectionsRute() {
   return SectionData.map((section, index) => (
     <Route
       key={index}
       path={section.title.toLowerCase()}
-      element={section.content}
+      element={
+        <Suspense fallback={<div>Caricamento {section.title}...</div>}>
+          {section.content}
+        </Suspense>
+      }
     />
   ));
 }
@@ -46,8 +49,6 @@ function App() {
           <NavigationMenu />
           <main>
             <Routes>
-              <Route path="" element={<Home />} />
-              <Route path="/" element={<Home />} />
               {SectionsRute()}
             </Routes>
           </main>
