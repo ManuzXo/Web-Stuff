@@ -11,15 +11,8 @@ class Products extends React.Component {
      render(): React.ReactNode {
         return (
             <>
-                <div className="panel">
-                    <div className="panel-header">
-                        <label>Products</label>
-                    </div>
-                    <div className="panel-body">
-                        <div className="grid-container">
-                            {this.getProducts()}
-                        </div>
-                    </div>
+                <div className="grid-container">
+                    {this.getProducts()}
                 </div>
             </>
         )
@@ -28,7 +21,7 @@ class Products extends React.Component {
      getProducts =  () => {
         return foods.map((food: Food, index:number) => {
             return (
-                <div key={index} className="grid-item-200">
+                <div key={index} className="grid-item-150">
                     <div className="card">
                         <div className="card-header">
                             <span>{food.name}</span> 
