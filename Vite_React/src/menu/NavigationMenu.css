@@ -5,8 +5,14 @@
     width: 100%;
     height: 60px;
     position: relative;
+    z-index: 2000;
   }
-  
+  .navigation-menu-container.fixed{
+    position: fixed;
+  }
+  .navigation-menu-container.fixed + main {
+    padding: 5rem 1rem 1rem 1rem;
+  }
   .scroll-button {
     /* background-color: #555555; */
     background-color: var(--navmenu-bc);

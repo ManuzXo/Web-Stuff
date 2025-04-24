@@ -29,7 +29,7 @@ class NavigationMenu extends React.Component {
     }
     render(): React.ReactNode {
         return (
-            <nav className="navigation-menu-container">
+            <nav className="navigation-menu-container fixed">
                 <button className={this.getScrollButtonClass("left")} onClick={() => this.scrollMenu("left")}>←</button>
                 <div className="navigation-scroll-wrapper">
                     <ul className="navigation-menu">

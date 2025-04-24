@@ -4,6 +4,7 @@ import NavigationMenu from './menu/NavigationMenu';
 import SectionData from './menu/Sections';
 import WebStyling from './style/WebStyling';
 import './App.css';
+import Spinner from './utils/Spinner';
 
 function SectionsRute() {
   return SectionData.map((section, index) => (
@@ -11,7 +12,8 @@ function SectionsRute() {
       key={index}
       path={section.title.toLowerCase()}
       element={
-        <Suspense fallback={<div>Caricamento {section.title}...</div>}>
+        // <Suspense fallback={<div>Caricamento {section.title}...</div>}>
+        <Suspense fallback={<Spinner></Spinner>}>
           {section.content}
         </Suspense>
       }
@@ -48,6 +50,7 @@ function App() {
         <BrowserRouter basename={window.location.hostname === "localhost" ? undefined : "/Vite_React"}>
           <NavigationMenu />
           <main>
+          {/* <Spinner></Spinner> */}
             <Routes>
               {SectionsRute()}
             </Routes>

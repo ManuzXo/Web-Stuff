@@ -23,7 +23,7 @@ class Products extends React.Component {
     getProducts = () => {
         return foods.map((food: Food, index: number) => {
             return (
-                <LazyRender key={index} className="grid-item grid-item-150" children={
+                <LazyRender key={index} as="div" className="grid-item grid-item-150" children={
                     <div className="card">
                         <div className="card-header">
                             <span>{food.name}</span>

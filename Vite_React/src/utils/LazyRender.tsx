@@ -1,50 +1,52 @@
-import React from "react";
+import React, { JSX } from "react";
 
-class LazyRender extends React.Component<{ className?: string, children: React.ReactNode }> {
+class LazyRender extends React.Component<{ 
+    className?: string, 
+    children: React.ReactNode, 
+    as?: keyof JSX.IntrinsicElements // Tipo dinamico per l'elemento
+}> {
     state: { isVisible: boolean };
-    ref: React.RefObject<HTMLDivElement | null>;
+    ref: React.RefObject<HTMLElement | null>;
     observer: IntersectionObserver | null = null;
     isObserver: boolean = false;
+
     constructor(props: any) {
         super(props);
         this.state = {
             isVisible: false
         };
-        this.ref = React.createRef<HTMLDivElement>();
+        this.ref = React.createRef<HTMLElement>();
     }
+
     componentDidMount(): void {
-        console.log("componentDidMount");
-        const callbackFunction  = (entries: IntersectionObserverEntry[]) => {
+        const callbackFunction = (entries: IntersectionObserverEntry[]) => {
             const [entry] = entries;
-            console.log(this.observer, entry.target, entry.isIntersecting);
-            if(entry.isIntersecting === true) {
+            if (entry.isIntersecting === true) {
                 this.setState({ isVisible: true });
                 this.Dispose();
             }
         };
         this.observer = new IntersectionObserver(callbackFunction, { threshold: 0.1 });
-        // essendo in una classe aspettiamo tot secondi, senno si usa useEffect to ref
-        setTimeout(()=>{ 
-                if(this.ref.current){
-                    this.isObserver = true;
-                    this.observer?.observe(this.ref.current);
-                }
-        }, 50);
+        setTimeout(() => { 
+            if (this.ref.current) {
+                this.isObserver = true;
+                this.observer?.observe(this.ref.current);
+            }
+        }, 100);
     }
+
     componentWillUnmount(): void {
         this.Dispose();
     }
+
     render(): React.ReactNode {
-        console.log("render", this.state.isVisible);
-        return (
-            <div className={this.props.className} ref={this.ref}>
-                {this.state.isVisible ? this.props.children : null}
-            </div>
-        );
+        const { as = "div", className, children } = this.props;
+        return React.createElement(as,{ className, ref: this.ref }, this.state.isVisible ? children : null );
     }
-    Dispose(){
-        if(this.observer && this.ref.current && this.isObserver) {
-            this.observer.unobserve(this.ref.current );
+
+    Dispose() {
+        if (this.observer && this.ref.current && this.isObserver) {
+            this.observer.unobserve(this.ref.current);
             this.observer.disconnect();
             this.ref = React.createRef<null>();
             this.observer = null;
