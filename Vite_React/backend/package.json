@@ -13,11 +13,14 @@
   "description": "",
   "dependencies": {
     "@types/reflect-metadata": "^0.0.5",
+    "better-sqlite3": "^11.9.1",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "mysql2": "^3.14.1",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.3",
     "nodemon": "^3.1.10",

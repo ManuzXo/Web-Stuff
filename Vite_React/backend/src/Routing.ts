@@ -16,18 +16,12 @@ function Routing(app: express.Express) {
   
   fs.readdirSync(controllersPath).forEach(async (file) => {
     if (file.endsWith('.ts') || file.endsWith('.js')) {
-      console.log(`Found controller file: ${file}`);
       const controllerModule = await import(path.join(controllersPath, file));
       const ControllerClass = controllerModule.default;
 
       if (ControllerClass && typeof ControllerClass === 'function') {
-        console.log(`Initializing controller: ${ControllerClass.name}`);
         const instance: BaseController = new ControllerClass();
-        console.log(`Controller initialized: ${ControllerClass.name}`);
-
         const routes: RouteMetadata[] = Reflect.getMetadata('routes', instance.constructor) || [];
-        console.log('Route metadata:', routes);
-
         if (routes) {
           routes.forEach((route: RouteMetadata) => {
             const { method, route: routePath, handler } = route;
