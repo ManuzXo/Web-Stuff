@@ -1,6 +1,5 @@
 import React from "react";
 import "./Products.css";
-import foods from "./products.json";
 import LazyRender from "../utils/LazyRender";
 interface Food {
     name: string;
@@ -10,7 +9,32 @@ interface Food {
 }
 
 class Products extends React.Component {
-
+    state: {
+        foods: Food[];
+    }
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            foods: [],
+        };
+    }
+    async componentDidMount(): Promise<void> {
+        const response = await fetch("api/products/GetProducts", {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        });
+        if (response.ok) {
+            const foods = await response.json();
+            this.setState({ foods: foods });
+        }
+        else // se la richiesta ternima scarica il file
+        {
+            const foods = await import("../../../db/products.json");
+            this.setState({ foods: foods.default });
+        }
+    }
     render(): React.ReactNode {
         return (
             <>
@@ -21,7 +45,7 @@ class Products extends React.Component {
         )
     }
     getProducts = () => {
-        return foods.map((food: Food, index: number) => {
+        return this.state.foods.map((food: Food, index: number) => {
             return (
                 <LazyRender key={index} as="div" className="grid-item grid-item-150" children={
                     <div className="card">

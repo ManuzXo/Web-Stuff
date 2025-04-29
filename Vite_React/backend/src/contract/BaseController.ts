@@ -4,7 +4,9 @@ import { HttpMethod } from '../network/HTTPMethod';
 class BaseController {
     BaseRoute: string;
     constructor(baseRoute: string) {
-        this.BaseRoute = `/api/${baseRoute}`;
+        if(!baseRoute.startsWith('/'))
+            baseRoute = '/' + baseRoute;
+        this.BaseRoute = baseRoute;
     }
 
     public static HttpRoute(method: HttpMethod, route: string) {
@@ -17,7 +19,6 @@ class BaseController {
         };
     }
 
-    // Static decorators for HTTP methods
     public static Get(route: string) {
         return this.HttpRoute(HttpMethod.GET, route);
     }

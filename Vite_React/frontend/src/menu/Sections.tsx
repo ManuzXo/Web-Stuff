@@ -5,6 +5,12 @@ const Home = React.lazy(() => import("../Home"));
 const Products = React.lazy(() => import("../market/Products"));
 const SectionData = [
     {
+        "title": "*",
+        "content": <div> Error </div>,
+        "excludeNavigation": true
+
+    },
+    {
         "title": "",
         "content": <Home></Home>,
         "excludeNavigation": true
