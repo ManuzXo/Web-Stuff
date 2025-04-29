@@ -48,7 +48,7 @@ function App() {
     <>
       <div className="app-container">
         {/* <BrowserRouter basename={window.location.hostname === "localhost" ? undefined : "/Vite_React"}> */}
-        <BrowserRouter basename={window.location.hostname === "localhost" ? undefined : "/Vite_React"}>
+        <BrowserRouter>
           <NavigationMenu />
           <main>
             <Routes>

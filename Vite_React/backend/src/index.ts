@@ -7,7 +7,8 @@ import Routing from './Routing';
 dotenv.config({ path: path.resolve(__dirname, '../config.env') });
 
 const app = express();
-const port = process.env.PORT || 3000;
+const host = process.env.HOST || 'localhost';
+const port = Number(process.env.PORT) || 3000;
 
 Routing(app); // Inizializza i controller
 
@@ -35,7 +36,7 @@ app.get(/(.*)/, (req, res, next) => {
 });
 
 // Avvia il server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(port, host, () => {
+  console.log(`Server running at http://${host}:${port}`);
 });
 
