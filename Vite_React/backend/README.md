@@ -28,12 +28,6 @@ To start the server in development mode with live reload:
 npm run dev
 ```
 
-### Run Tests
-To execute the test suite:
-```bash
-npm test
-```
-
 ### Build
 To compile the backend code for production:
 ```bash
