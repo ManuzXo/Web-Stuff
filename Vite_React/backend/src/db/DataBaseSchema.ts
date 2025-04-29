@@ -1,4 +1,4 @@
-import { DBAccess } from "./DataBaseAccess"; // Assicurati che `DBAccess.database` sia configurato correttamente
+import { DBAccess } from "./DataBaseAccess";
 
 export class DataBaseSchema {
     public schema: { [key: string]: string };
