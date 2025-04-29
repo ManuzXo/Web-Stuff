@@ -11,9 +11,10 @@ type RouteMetadata = {
   handler: string;
 };
 
+let controllersData: { [key: string]: string[] } = {};
 function Routing(app: express.Express) {
   const controllersPath = path.resolve(__dirname, 'controller');
-  
+
   fs.readdirSync(controllersPath).forEach(async (file) => {
     if (file.endsWith('.ts') || file.endsWith('.js')) {
       const controllerModule = await import(path.join(controllersPath, file));
@@ -26,9 +27,8 @@ function Routing(app: express.Express) {
           routes.forEach((route: RouteMetadata) => {
             const { method, route: routePath, handler } = route;
             const fullRoute = `${instance.BaseRoute}${routePath}`;
-            console.log(`Registering route: ${method} ${fullRoute}`);
+            console.debug(`Registering route: ${method} ${fullRoute}`);
             const handlerFunction = instance[handler as keyof BaseController] as unknown as (...args: any[]) => void;
-
             if (method === HttpMethod.GET) {
               app.get(fullRoute, handlerFunction.bind(instance));
             } else if (method === HttpMethod.POST) {
@@ -38,10 +38,16 @@ function Routing(app: express.Express) {
             } else if (method === HttpMethod.DELETE) {
               app.delete(fullRoute, handlerFunction.bind(instance));
             }
+            if (!controllersData[file])
+              controllersData[file] = [];
+            controllersData[file].push(fullRoute);
           });
         }
       }
     }
+  });
+  app.get('/api/controllers', (req, res) => {
+    res.json(controllersData);
   });
 }
 
