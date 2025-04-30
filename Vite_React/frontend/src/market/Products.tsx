@@ -1,12 +1,13 @@
 import React from "react";
 import "./Products.css";
 import LazyRender from "../utils/LazyRender";
-interface Food {
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-}
+// interface Food {
+//     name: string;
+//     description: string;
+//     price: number;
+//     image: string;
+// }
+import {Food} from "../../../backend/src/db/Model/Food";
 
 class Products extends React.Component {
     state: {
