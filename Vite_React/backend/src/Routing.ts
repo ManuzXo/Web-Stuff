@@ -32,18 +32,26 @@ function Routing(app: express.Express) {
             const { method, route: routePath, handler } = route;
             const fullRoute = `${instance.BaseRoute}${routePath}`;
             console.info(`🚀 Registering route: [${method}] ${fullRoute} (Handler: ${handler})`);
+
             const handlerFunction = instance[handler as keyof BaseController] as unknown as (...args: any[]) => void;
+            const loggedHandlerFunction = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+              console.info(`📥 Incoming request: [${method}] ${fullRoute}`);
+              handlerFunction.call(instance, req, res, next);
+            };
+
             if (method === HttpMethod.GET) {
-              app.get(fullRoute, handlerFunction.bind(instance));
+              app.get(fullRoute, loggedHandlerFunction);
             } else if (method === HttpMethod.POST) {
-              app.post(fullRoute, handlerFunction.bind(instance));
+              app.post(fullRoute, loggedHandlerFunction);
             } else if (method === HttpMethod.PUT) {
-              app.put(fullRoute, handlerFunction.bind(instance));
+              app.put(fullRoute, loggedHandlerFunction);
             } else if (method === HttpMethod.DELETE) {
-              app.delete(fullRoute, handlerFunction.bind(instance));
+              app.delete(fullRoute, loggedHandlerFunction);
             }
+            
             if (!controllersData[file])
               controllersData[file] = [];
+            
             controllersData[file].push(fullRoute);
           });
         } else {
