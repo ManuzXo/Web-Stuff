@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { HttpMethod } from '../network/HTTPMethod';
+import { RouteMetadata } from '../types/RouteMetaData';
 
 class BaseController {
     BaseRoute: string;
@@ -14,7 +15,8 @@ class BaseController {
             const routes: any[] = Reflect.getMetadata('routes', target.constructor) || [];
             if(!route.startsWith('/')) 
                 route = '/' + route;
-            routes.push({ method, route, handler: propertyKey });
+            let data : RouteMetadata = { method, route, handler: propertyKey };
+            routes.push(data);
             Reflect.defineMetadata('routes', routes, target.constructor);
         };
     }
