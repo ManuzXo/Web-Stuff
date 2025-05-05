@@ -12,5 +12,29 @@
   }
   
   .btn-rounded {
-    border-radius: 50%;
+    border-radius: 1.5rem;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .btn-info {
+    background-color: #17a2b8;
+    color: white;
+  }
+
+  .btn-warn {
+    background-color: #ffc107;
+    color: black;
+  }
+
+  .btn-error {
+    background-color: #dc3545;
+    color: white;
   }

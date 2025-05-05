@@ -7,8 +7,8 @@ import LazyRender from "../utils/LazyRender";
 //     price: number;
 //     image: string;
 // }
-import {Food} from "../../../backend/src/db/Model/Food";
-
+import { Food } from "../../../backend/src/db/Model/Food";
+import imgNotFound from "../img/404.jpg";
 class Products extends React.Component {
     state: {
         foods: Food[];
@@ -30,7 +30,7 @@ class Products extends React.Component {
             const foods = await response.json();
             this.setState({ foods: foods });
         }
-        else // se la richiesta ternima scarica il file
+        else // se la richiesta è fallita, carica i dati dal file JSON locale
         {
             const foods = await import("../../../db/products.json");
             this.setState({ foods: foods.default });
@@ -57,24 +57,17 @@ class Products extends React.Component {
                         </div>
                         <div className="card-body">
                             <label>{food.description}</label>
-                            <img src={food.image}></img>
+                            <img src={food.image} onError={ (element) => {
+                                let target = element.currentTarget;
+                                target.src = imgNotFound;
+                            }}></img>
+                        </div>
+                        <div className="card-footer">
+                            <button className="btn btn-rounded btn-primary">Add to cart</button>
                         </div>
                     </div>
                 }>
                 </LazyRender>
-                // <div key={index} className="grid-item grid-item-150">
-                //     <div className="card">
-                //         <div className="card-header">
-                //             <span>{food.name}</span>
-                //             <span> </span>
-                //             <span className="food-price">{food.price}€</span>
-                //         </div>
-                //         <div className="card-body">
-                //             <label>{food.description}</label>
-                //             <img src={food.image}></img>
-                //         </div>
-                //     </div>
-                // </div>
             )
         });
     }

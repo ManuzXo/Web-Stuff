@@ -17,7 +17,7 @@ routeManager.initialize().then(() => { // Inizializza i controller
 
   app.use(express.static(path.resolve(__dirname, process.env.FRONTEND_DIST || ''))); // Serve i file statici (JS, CSS, immagini)
   app.use(express.json()); // Middleware per il parsing del JSON
-
+  
   // Invia il file index.html come risposta alla root
   app.get(/(.*)/, (req, res, next) => {
 
