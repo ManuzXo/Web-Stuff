@@ -21,11 +21,18 @@ export class DataBaseSchema {
 
     // Inserisci un record
     public InsertRecord(record: any): void {
-        const keys = Object.keys(this.schema).join(', ');
+        const keys = Object.keys(record); // usa solo le chiavi presenti nei dati
         const values = Object.values(record);
         const placeholders = values.map(() => '?').join(', ');
-
-        const query = `INSERT INTO ${this.tableName} (${keys}) VALUES (${placeholders})`;
+    
+        const query = `INSERT INTO ${this.tableName} (${keys.join(', ')}) VALUES (${placeholders})`;
         DBAccess.database.prepare(query).run(...values);
+    }
+    
+
+    // Elimina record in base a una condizione
+    public DeleteByExpression(expression: string, params: any[]): void {
+        const query = `DELETE FROM ${this.tableName} WHERE ${expression}`;
+        DBAccess.database.prepare(query).run(...params);
     }
 }

@@ -13,8 +13,8 @@ class BaseController {
     public static HttpRoute(method: HttpMethod, route: string) {
         return function (target: any, propertyKey: string) {
             const routes: any[] = Reflect.getMetadata('routes', target.constructor) || [];
-            if(!route.startsWith('/')) 
-                route = '/' + route;
+            // if(!route.startsWith('/')) 
+            //     route = '/' + route;
             let data : RouteMetadata = { method, route, handler: propertyKey };
             routes.push(data);
             Reflect.defineMetadata('routes', routes, target.constructor);

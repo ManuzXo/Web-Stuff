@@ -13,7 +13,7 @@ function SectionsRute() {
       path={section.title.toLowerCase()}
       element={
         // <Suspense fallback={<div>Caricamento {section.title}...</div>}>
-        <Suspense fallback={<Spinner></Spinner>}>
+        <Suspense fallback={<Spinner absolute={true} ></Spinner>}>
           {section.content}
         </Suspense>
       }

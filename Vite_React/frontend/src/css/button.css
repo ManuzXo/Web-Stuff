@@ -1,9 +1,13 @@
 .btn {
-    background-color: #555555;
     color: white;
     border: none;
-    padding: 0.5rem;
     cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
     z-index: 1;
   }
   
@@ -12,7 +16,8 @@
   }
   
   .btn-rounded {
-    border-radius: 1.5rem;
+    border-radius: 50% !important;
+   
   }
   .btn-primary {
     background-color: #007bff;
@@ -34,7 +39,7 @@
     color: black;
   }
 
-  .btn-error {
+  .btn-danger {
     background-color: #dc3545;
     color: white;
   }

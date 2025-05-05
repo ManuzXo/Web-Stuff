@@ -31,6 +31,17 @@ class ProductController extends BaseController {
     public GetProducts(req: Request, res: Response) {
         res.send(this.foodModel.GetFoods());
     }
+
+    @BaseController.Delete("/DeleteProduct")
+    public DeleteProduct(req: Request, res: Response) {
+        const id: number = req.body.id;
+        if (!id) {
+            res.status(400).send({ message: 'ID is required' });
+            return;
+        }
+        this.foodModel.DeleteById(id);
+        res.status(200).send({ message: 'Product deleted successfully' });
+    }
 }
 
 export default ProductController;

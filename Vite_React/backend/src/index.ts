@@ -11,13 +11,12 @@ const app = express();
 const host = process.env.HOST || 'localhost';
 const port = Number(process.env.PORT) || 3000;
 
+app.use(express.static(path.resolve(__dirname, process.env.FRONTEND_DIST || ''))); // Serve i file statici (JS, CSS, immagini)
+app.use(express.json()); // Middleware per il parsing del JSON
+
 const routeManager = new RouterManager(app); // Crea un'istanza di RouterManager
 routeManager.initialize().then(() => { // Inizializza i controller
 
-
-  app.use(express.static(path.resolve(__dirname, process.env.FRONTEND_DIST || ''))); // Serve i file statici (JS, CSS, immagini)
-  app.use(express.json()); // Middleware per il parsing del JSON
-  
   // Invia il file index.html come risposta alla root
   app.get(/(.*)/, (req, res, next) => {
 
@@ -44,4 +43,7 @@ routeManager.initialize().then(() => { // Inizializza i controller
     console.log(`🚀 Server running at http://${host}:${port}`);
   });
 
+}).catch((error) => {
+  console.error('❌ Error initializing router:', error);
+  process.exit(1);
 }); 

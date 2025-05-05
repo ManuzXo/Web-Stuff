@@ -6,10 +6,10 @@
     background-color: inherit;
     max-width: 400px;
     margin: 16px auto;
-    color:inherit;
+    color: inherit;
 }
 
-.card > .card-header {
+.card>.card-header {
     background-color: var(--card-header-bc);
     padding: 16px;
     font-size: 1.25rem;
@@ -20,16 +20,21 @@
     text-overflow: ellipsis;
 }
 
-.card > .card-body {
+.card>.card-body {
     padding: 16px;
     font-size: 1rem;
     white-space: normal;
     word-wrap: break-word;
 }
-.card > .card-footer {
+
+.card>.card-footer {
     padding: 16px;
     font-size: 0.875rem;
     border-top: 1px solid #ddd;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-body img {
@@ -38,4 +43,3 @@
     object-fit: scale-down;
     border-radius: 4px;
 }
-  

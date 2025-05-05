@@ -1,5 +1,6 @@
 import { DataBaseSchema } from "../DataBaseSchema";
 export class Food extends DataBaseSchema {
+    id!: number;
     name!: string;
     description!: string;
     price!: number;
@@ -7,6 +8,7 @@ export class Food extends DataBaseSchema {
 
     constructor() {
         super({
+            id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
             name: 'TEXT',
             description: 'TEXT',
             price: 'REAL',
@@ -33,5 +35,8 @@ export class Food extends DataBaseSchema {
     // Esempio di una ricerca personalizzata
     public FindFoodsByName(name: string): Food[] {
         return this.FindByExpression("name LIKE ?", [`%${name}%`]) as Food[];
+    }
+    public DeleteById(id: number): void {
+        this.DeleteByExpression("id = ?", [id]);
     }
 }
