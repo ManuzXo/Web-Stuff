@@ -19,15 +19,15 @@ class Products extends React.Component {
         const response = await fetch(`${this.base_endpoint}/GetProducts`, {
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
             }
         });
-        if (response.ok) {
+        const contentType = response.headers.get("Content-Type");
+        if (response.ok && contentType && contentType.includes("application/json")) {
             const foods = await response.json();
             this.setState({ foods: foods });
         }
-        else // se la richiesta è fallita, carica i dati dal file JSON locale
-        {
+        else {  // se la richiesta è fallita, carica i dati dal file JSON locale
             const foods = await import("../../../db/products.json");
             this.setState({ foods: foods.default });
         }

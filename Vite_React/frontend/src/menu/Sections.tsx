@@ -3,6 +3,7 @@
 import React from "react";
 const Home = React.lazy(() => import("../Home"));
 const Products = React.lazy(() => import("../market/Products"));
+const Controllers = React.lazy(() => import("../api/Controllers"));
 const SectionData = [
     {
         "title": "*",
@@ -27,6 +28,10 @@ const SectionData = [
     {
         "title": "Products",
         "content": <Products></Products>
+    },
+    {
+        "title": "Controllers",
+        "content": <Controllers></Controllers>
     }
 ];
 export default SectionData;
