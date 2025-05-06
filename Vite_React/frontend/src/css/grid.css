@@ -22,3 +22,6 @@
   .grid-item-300 {
     flex-basis: 300px !important;
   }
+  .grid-item-max {
+    flex-basis: 100% !important;
+  }

@@ -5,8 +5,10 @@
     overflow: hidden;
     background-color: inherit;
     max-width: 400px;
-    margin: 16px auto;
+    /* margin: 16px auto; */
     color: inherit;
+    background-color: var(--bc-color);
+
 }
 
 .card>.card-header {

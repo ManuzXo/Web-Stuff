@@ -1,45 +1,106 @@
+/* ===========================
+   Base Button Styles
+=========================== */
 .btn {
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    width: 3rem;
-    height: 3rem;
-    z-index: 1;
-  }
-  
-  .btn-lg {
-    padding: 1rem;
-  }
-  
-  .btn-rounded {
-    border-radius: 50% !important;
-   
-  }
-  .btn-primary {
-    background-color: #007bff;
-    color: white;
-  }
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1;
+  z-index: 1;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-  .btn-success {
-    background-color: #28a745;
-    color: white;
-  }
+/* ===========================
+   Size Variants
+=========================== */
+.btn-lg {
+  padding: 1.25rem 1.5rem;
+  font-size: 1.25rem;
+}
 
-  .btn-info {
-    background-color: #17a2b8;
-    color: white;
-  }
+.btn-sm {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
 
-  .btn-warn {
-    background-color: #ffc107;
-    color: black;
-  }
+/* ===========================
+   Circular Button (Fixed Size, Icon Only)
+=========================== */
+.btn-rounded {
+  border-radius: 50% !important;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-  .btn-danger {
-    background-color: #dc3545;
-    color: white;
-  }
+/* ===========================
+   Pill Button (Fluid Width with Rounded Corners)
+=========================== */
+.btn-pill {
+  border-radius: 50rem !important;
+  padding: 0.5rem 1.25rem;
+}
+
+/* ===========================
+   Hover & Focus Effects
+=========================== */
+.btn:hover {
+  filter: brightness(90%);
+  transform: scale(1.03);
+}
+
+.btn-rounded:hover,
+.btn-rounded:focus,
+.btn-pill:hover,
+.btn-pill:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* ===========================
+   Color Variants
+=========================== */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.btn-warn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* ===========================
+   Disabled State
+=========================== */
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
+}
