@@ -7,7 +7,10 @@ class DataBaseAccess {
     dbPath: string;
     database: Database.Database;
     constructor() {
-        this.dbPath = path.join(__dirname, '../../../db/web.db');
+        if (!process.env.DB_PATH) {
+            throw new Error('Environment variable DB_PATH is not defined');
+        }
+        this.dbPath = path.join(__dirname, process.env.DB_PATH);
         this.database = new Database(this.dbPath);
         this.InitTable();
     }
