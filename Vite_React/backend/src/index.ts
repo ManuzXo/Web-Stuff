@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import path from 'path';
 import Routing from './Routing';
 import RouterManager from './Routing';
-
 // Carica il file .env
 dotenv.config({ path: path.resolve(__dirname, '../config.env') });
 
