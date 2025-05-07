@@ -2,6 +2,7 @@ import React from "react";
 import SectionData from "./Sections";
 import "./NavigationMenu.css";
 import { Link } from "react-router-dom";
+import { Device, DeviceType } from "../utils/ui/Device";
 class NavigationMenu extends React.Component {
     state = {
         activeIndex: 0,
@@ -30,7 +31,9 @@ class NavigationMenu extends React.Component {
     render(): React.ReactNode {
         return (
             <nav className="navigation-menu-container fixed">
-                <button className={this.getScrollButtonClass("left")} onClick={() => this.scrollMenu("left")}>←</button>
+                <Device deviceType={DeviceType.PC}>
+                    <button className={this.getScrollButtonClass("left")} onClick={() => this.scrollMenu("left")}>←</button>
+                </Device>
                 <div className="navigation-scroll-wrapper">
                     <ul className="navigation-menu">
                         {
@@ -46,7 +49,9 @@ class NavigationMenu extends React.Component {
                         }
                     </ul>
                 </div>
-                <button className={this.getScrollButtonClass("right")} onClick={() => this.scrollMenu("right")}>→</button>
+                <Device deviceType={DeviceType.PC}>
+                    <button className={this.getScrollButtonClass("right")} onClick={() => this.scrollMenu("right")}>→</button>
+                </Device>
             </nav>
         );
     }

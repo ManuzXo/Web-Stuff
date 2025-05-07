@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/dropzone.css";
+import "./dropzone.css";
 
 type DropzoneProps = {
     onFileSelected?: (file: File) => void;
@@ -54,26 +54,26 @@ class Dropzone extends React.Component<DropzoneProps, DropzoneState> {
         if (this.state.files.length >= this.maxFile) {
             this.clearFiles();
         }
-    
+
         const reader = new FileReader();
         reader.onloadend = () => {
             const base64 = reader.result as string;
-    
+
             const newFile: FilePreview = {
                 fileName: file.name,
                 imageData: base64,
             };
-    
+
             this.setState((prevState) => ({
                 files: [...prevState.files, newFile],
             }));
-    
+
             this.props.onFileSelected?.(file);
         };
-    
+
         reader.readAsDataURL(file); // <-- converte in base64
     };
-    
+
 
     clearFiles = () => {
         this.setState({ files: [] });

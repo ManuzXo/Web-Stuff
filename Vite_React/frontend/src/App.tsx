@@ -4,7 +4,7 @@ import NavigationMenu from './menu/NavigationMenu';
 import SectionData from './menu/Sections';
 import WebStyling from './style/WebStyling';
 import './App.css';
-import Spinner from './utils/Spinner';
+import Spinner from './utils/ui/Spinner';
 
 function SectionsRute() {
   return SectionData.map((section, index) => (

@@ -1,4 +1,5 @@
 import React, { JSX } from "react";
+import "./modal.css"
 
 type ModalProps = {
     modalHeader?: JSX.Element;

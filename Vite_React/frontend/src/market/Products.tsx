@@ -1,21 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./Products.css";
-import LazyRender from "../utils/LazyRender";
-import Modal from "../utils/Modal";
-import Dropzone from "../utils/Dropzone";
+const  Modal = React.lazy(() => import("../utils/ui/modal/Modal"))
+const Dropzone = React.lazy(() => import("../utils/ui/dropzone/Dropzone"))
 import imgNotFound from "../img/404.jpg";
 import { Product } from "../../../backend/src/db/Model/Product";
-
+import LazyRender from "../utils/ui/LazyRender";
 class Products extends React.Component {
     state = { products: [] as Product[] };
 
     base_endpoint = "api/products";
 
-    modalInsert = React.createRef<Modal>();
+    modalInsert = React.createRef<React.ComponentRef<typeof Modal>>();
     inputName = React.createRef<HTMLInputElement>();
     inputPrice = React.createRef<HTMLInputElement>();
     inputDesc = React.createRef<HTMLInputElement>();
-    dropzoneRef = React.createRef<Dropzone>();
+    dropzoneRef = React.createRef<React.ComponentRef<typeof Dropzone>>();
 
     async componentDidMount() {
         await this.fetchProducts();
@@ -112,11 +111,13 @@ class Products extends React.Component {
                     </div>
                     <div className="grid-item-max">
                         <label>Immagine</label>
-                        <Dropzone
-                            ref={this.dropzoneRef}
-                            onFileSelected={(file: File) => console.log("file aggiunto", file)}
-                            accept="image/*"
-                        />
+                        <Suspense>
+                            <Dropzone
+                                ref={this.dropzoneRef}
+                                onFileSelected={(file: File) => console.log("file aggiunto", file)}
+                                accept="image/*"
+                            />
+                        </Suspense>
                     </div>
                 </div>
             }
@@ -176,7 +177,7 @@ class Products extends React.Component {
                 console.log("Prodotto rimosso");
                 const products = [...this.state.products];
                 products.splice(index, 1);
-                this.setState({ products  });
+                this.setState({ products });
             } else {
                 console.error("Errore nella rimozione del prodotto");
             }

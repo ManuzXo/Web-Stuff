@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/spinner.css";
+import "../../css/spinner.css";
 class Spinner extends React.Component<{children?: React.ReactNode, absolute?: boolean}, {}> {
     state: {
         show: boolean;
