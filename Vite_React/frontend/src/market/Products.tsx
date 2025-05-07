@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import "./Products.css";
-const  Modal = React.lazy(() => import("../utils/ui/modal/Modal"))
+const Modal = React.lazy(() => import("../utils/ui/modal/Modal"))
 const Dropzone = React.lazy(() => import("../utils/ui/dropzone/Dropzone"))
 import imgNotFound from "../img/404.jpg";
 import { Product } from "../../../backend/src/db/Model/Product";
@@ -91,47 +91,50 @@ class Products extends React.Component {
     );
 
     renderModal = () => (
-        <Modal
-            ref={this.modalInsert}
-            // show={true}
-            modalHeader={<label>Aggiungi Prodotto</label>}
-            modalBody={
-                <div className="grid-container">
-                    <div className="grid-item">
-                        <label>Nome Prodotto</label>
-                        <input ref={this.inputName} className="form-input" type="text" required />
+        <Suspense>
+            <Modal
+                ref={this.modalInsert}
+                // show={true}
+                modalHeader={<label>Aggiungi Prodotto</label>}
+                modalBody={
+                    <div className="grid-container">
+                        <div className="grid-item">
+                            <label>Nome Prodotto</label>
+                            <input ref={this.inputName} className="form-input" type="text" required />
+                        </div>
+                        <div className="grid-item">
+                            <label>Prezzo Prodotto</label>
+                            <input ref={this.inputPrice} className="form-input" type="number" required />
+                        </div>
+                        <div className="grid-item-max">
+                            <label>Descrizione</label>
+                            <input ref={this.inputDesc} className="form-input" type="text" required />
+                        </div>
+                        <div className="grid-item-max">
+                            <label>Immagine</label>
+                            <Suspense>
+                                <Dropzone
+                                    ref={this.dropzoneRef}
+                                    onFileSelected={(file: File) => console.log("file aggiunto", file)}
+                                    accept="image/*"
+                                />
+                            </Suspense>
+                        </div>
                     </div>
-                    <div className="grid-item">
-                        <label>Prezzo Prodotto</label>
-                        <input ref={this.inputPrice} className="form-input" type="number" required />
-                    </div>
-                    <div className="grid-item-max">
-                        <label>Descrizione</label>
-                        <input ref={this.inputDesc} className="form-input" type="text" required />
-                    </div>
-                    <div className="grid-item-max">
-                        <label>Immagine</label>
-                        <Suspense>
-                            <Dropzone
-                                ref={this.dropzoneRef}
-                                onFileSelected={(file: File) => console.log("file aggiunto", file)}
-                                accept="image/*"
-                            />
-                        </Suspense>
-                    </div>
-                </div>
-            }
-            modalFooter={
-                <>
-                    <button className="btn btn-pill btn-success mr-1" onClick={this.addProduct}>
-                        Aggiungi
-                    </button>
-                    <button className="btn btn-pill btn-primary" onClick={() => this.modalInsert.current?.hide()}>
-                        Annulla
-                    </button>
-                </>
-            }
-        />
+                }
+                modalFooter={
+                    <>
+                        <button className="btn btn-pill btn-success mr-1" onClick={this.addProduct}>
+                            Aggiungi
+                        </button>
+                        <button className="btn btn-pill btn-primary" onClick={() => this.modalInsert.current?.hide()}>
+                            Annulla
+                        </button>
+                    </>
+                }
+            />
+        </Suspense>
+
     );
 
     // ----------------------------
