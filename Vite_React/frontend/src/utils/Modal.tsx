@@ -4,6 +4,7 @@ type ModalProps = {
     modalHeader?: JSX.Element;
     modalBody?: JSX.Element;
     modalFooter?: JSX.Element;
+    show?: boolean
 };
 
 type ModalState = {
@@ -15,7 +16,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
 
     constructor(props: ModalProps) {
         super(props);
-        this.state = { show: true };
+        this.state = { show: props.show ?? false };
         this.containerRef = React.createRef();
     }
 

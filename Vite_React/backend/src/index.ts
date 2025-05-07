@@ -11,7 +11,7 @@ const host = process.env.HOST || 'localhost';
 const port = Number(process.env.PORT) || 3000;
 
 app.use(express.static(path.resolve(__dirname, process.env.FRONTEND_DIST || ''))); // Serve i file statici (JS, CSS, immagini)
-app.use(express.json()); // Middleware per il parsing del JSON
+app.use(express.json({limit: "10mb"})); // Middleware per il parsing del JSON
 
 const routeManager = new RouterManager(app); // Crea un'istanza di RouterManager
 routeManager.initialize().then(() => { // Inizializza i controller
