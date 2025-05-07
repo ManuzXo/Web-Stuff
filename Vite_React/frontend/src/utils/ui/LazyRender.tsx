@@ -1,20 +1,24 @@
 import React, { JSX } from "react";
 
-class LazyRender extends React.Component<{ 
-    className?: string, 
-    children: React.ReactNode, 
-    as?: keyof JSX.IntrinsicElements // Tipo dinamico per l'elemento
-}> {
-    state: { isVisible: boolean };
+type LazyRenderProps = {
+    isVisible: boolean
+};
+type LazyRenderParam = {
+    children: JSX.Element//React.ReactNode
+    className?: string
+    as?: keyof JSX.IntrinsicElements
+};
+class LazyRender extends React.Component<LazyRenderParam, LazyRenderProps> {
+    observer: IntersectionObserver | null;
+    isObserver: boolean;
     ref: React.RefObject<HTMLElement | null>;
-    observer: IntersectionObserver | null = null;
-    isObserver: boolean = false;
-
     constructor(props: any) {
         super(props);
         this.state = {
             isVisible: false
         };
+        this.observer = null;
+        this.isObserver = false;
         this.ref = React.createRef<HTMLElement>();
     }
 

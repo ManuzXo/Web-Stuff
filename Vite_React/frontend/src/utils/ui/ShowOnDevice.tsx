@@ -11,7 +11,7 @@ export type DeviceParam = {
     children: JSX.Element
     deviceType: DeviceType
 } 
-export class Device extends React.Component<DeviceParam, DeviceProps> {
+export class ShowOnDevice extends React.Component<DeviceParam, DeviceProps> {
     readonly MOBILE_WIDTH = 768;
     constructor(props: DeviceParam) {
         super(props)

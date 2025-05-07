@@ -1,9 +1,13 @@
-import React from "react";
+import React, { JSX } from "react";
 import "../../css/spinner.css";
-class Spinner extends React.Component<{children?: React.ReactNode, absolute?: boolean}, {}> {
-    state: {
-        show: boolean;
-    }
+type SpinnerProps = {
+    show: boolean
+};
+type SpinnerParam =  {
+    children?: JSX.Element
+    absolute?: boolean
+};
+class Spinner extends React.Component<SpinnerParam, SpinnerProps> {
     constructor(props: any) {
         super(props);
         this.state = {
