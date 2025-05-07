@@ -4,10 +4,10 @@ import LazyRender from "../utils/LazyRender";
 import Modal from "../utils/Modal";
 import Dropzone from "../utils/Dropzone";
 import imgNotFound from "../img/404.jpg";
-import { Food } from "../../../backend/src/db/Model/Food";
+import { Product } from "../../../backend/src/db/Model/Product";
 
 class Products extends React.Component {
-    state = { foods: [] as Food[] };
+    state = { products: [] as Product[] };
 
     base_endpoint = "api/products";
 
@@ -36,26 +36,26 @@ class Products extends React.Component {
     // ----------------------------
 
     renderProducts = () => {
-        const { foods } = this.state;
+        const { products } = this.state;
 
-        if (!foods || foods.length === 0)
+        if (!products || products.length === 0)
             return <span>Non ci sono prodotti disponibili</span>;
 
         return (
             <div className="grid-container">
-                {foods.map((food, index) => (
+                {products.map((product, index) => (
                     <LazyRender key={index} as="div" className="grid-item grid-item-150">
                         <div className="card" style={{ margin: "16px auto" }}>
                             <div className="card-header">
-                                <span>{food.name}</span>
-                                <span className="food-price">{food.price}€</span>
+                                <span>{product.name} </span>
+                                <span className="product-price">{product.price}€</span>
                             </div>
                             <div className="card-body">
-                                <label>{food.description}</label>
+                                <label>{product.description}</label>
                                 <img
-                                    src={food.image}
+                                    src={product.image}
                                     onError={(e) => (e.currentTarget.src = imgNotFound)}
-                                    alt="food"
+                                    alt={product.name}
                                 />
                             </div>
                             <div className="card-footer">
@@ -67,7 +67,7 @@ class Products extends React.Component {
                                 <div className="m-1">
                                     <button
                                         className="btn btn-rounded btn-danger"
-                                        onClick={this.removeProduct.bind(this, food, index)}
+                                        onClick={this.removeProduct.bind(this, product, index)}
                                     >
                                         <i className="gg-trash"></i>
                                     </button>
@@ -143,7 +143,7 @@ class Products extends React.Component {
         const description = this.inputDesc.current?.value ?? "";
         const imageData = this.dropzoneRef.current?.state.files?.[0]?.imageData;
 
-        const model: Partial<Food> = { name, price, description, image: imageData };
+        const model: Partial<Product> = { name, price, description, image: imageData };
 
         const response = await fetch(`${this.base_endpoint}/InsertProduct`, {
             method: "POST",
@@ -163,7 +163,7 @@ class Products extends React.Component {
         }
     };
 
-    removeProduct = (food: Food, index: number) => {
+    removeProduct = (food: Product, index: number) => {
         fetch(`${this.base_endpoint}/DeleteProduct`, {
             method: "DELETE",
             headers: {
@@ -174,7 +174,7 @@ class Products extends React.Component {
         }).then((response) => {
             if (response.ok) {
                 console.log("Prodotto rimosso");
-                const foods = [...this.state.foods];
+                const foods = [...this.state.products];
                 foods.splice(index, 1);
                 this.setState({ foods });
             } else {

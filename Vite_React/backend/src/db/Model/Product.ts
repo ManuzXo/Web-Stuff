@@ -1,5 +1,5 @@
 import { DataBaseSchema } from "../DataBaseSchema";
-export class Food extends DataBaseSchema {
+export class Product extends DataBaseSchema {
     id!: number;
     name!: string;
     description!: string;
@@ -17,12 +17,12 @@ export class Food extends DataBaseSchema {
     }
 
     // Recupera tutti i cibi
-    public GetFoods(): Food[] {
-        return this.GetRecords() as Food[];
+    public GetProducts(): Product[] {
+        return this.GetRecords() as Product[];
     }
 
     // Inserisci un nuovo cibo
-    public InsertFood(food: Food): void {
+    public InsertProduct(food: Product): void {
         const foodRecord = {
             name: food.name,
             description: food.description,
@@ -33,8 +33,8 @@ export class Food extends DataBaseSchema {
     }
 
     // Esempio di una ricerca personalizzata
-    public FindFoodsByName(name: string): Food[] {
-        return this.FindByExpression("name LIKE ?", [`%${name}%`]) as Food[];
+    public FindProductsByName(name: string): Product[] {
+        return this.FindByExpression("name LIKE ?", [`%${name}%`]) as Product[];
     }
     public DeleteById(id: number): void {
         this.DeleteByExpression("id = ?", [id]);

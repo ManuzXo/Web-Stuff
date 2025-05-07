@@ -1,26 +1,26 @@
 import { Request, Response } from 'express';
 import BaseController from '../contract/BaseController';
-import { Food } from '../db/Model/Food';
+import { Product } from '../db/Model/Product';
 
 class ProductController extends BaseController {
-    foodModel: Food;
+    foodModel: Product;
     constructor() {
         super('/api/products');
-        this.foodModel = new Food();
+        this.foodModel = new Product();
         console.log('ProductController initialized');
     }
 
     @BaseController.Post("/InsertProduct")
     public InsertProduct(req: Request, res: Response) {
-        const food: Food = req.body;
-        this.foodModel.InsertFood(food);
+        const food: Product = req.body;
+        this.foodModel.InsertProduct(food);
         res.send({ message: 'Product inserted successfully' });
     }
 
 
     @BaseController.Get("/GetProducts")
     public GetProducts(req: Request, res: Response) {
-        res.send(this.foodModel.GetFoods());
+        res.send(this.foodModel.GetProducts());
     }
 
     @BaseController.Delete("/DeleteProduct")
