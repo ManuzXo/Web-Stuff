@@ -174,9 +174,9 @@ class Products extends React.Component {
         }).then((response) => {
             if (response.ok) {
                 console.log("Prodotto rimosso");
-                const foods = [...this.state.products];
-                foods.splice(index, 1);
-                this.setState({ foods });
+                const products = [...this.state.products];
+                products.splice(index, 1);
+                this.setState({ products  });
             } else {
                 console.error("Errore nella rimozione del prodotto");
             }
@@ -195,11 +195,11 @@ class Products extends React.Component {
             const contentType = response.headers.get("Content-Type");
 
             if (response.ok && contentType?.includes("application/json")) {
-                const foods = await response.json();
-                this.setState({ foods });
+                const products = await response.json();
+                this.setState({ products });
             } else {
                 const fallback = await import("../../../db/products.json");
-                this.setState({ foods: fallback.default });
+                this.setState({ products: fallback.default });
             }
         } catch (err) {
             console.error("Errore nel caricamento prodotti", err);

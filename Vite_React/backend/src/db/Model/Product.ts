@@ -22,14 +22,8 @@ export class Product extends DataBaseSchema {
     }
 
     // Inserisci un nuovo cibo
-    public InsertProduct(food: Product): void {
-        const foodRecord = {
-            name: food.name,
-            description: food.description,
-            price: food.price,
-            image: food.image
-        };
-        this.InsertRecord(foodRecord);
+    public InsertProduct(product: Product): void {
+        this.InsertRecord(product);
     }
 
     // Esempio di una ricerca personalizzata
