@@ -1,8 +1,8 @@
 // import Home from "../Home";
 // import Products from "../market/Products";
 import React from "react";
-import Test from "../utils/test";
-const Home = React.lazy(() => import("../Home"));
+import Test from "../../utils/test";
+const Home = React.lazy(() => import("../../Home"));
 const Products = React.lazy(() => import("../market/Products"));
 const Controllers = React.lazy(() => import("../api/Controllers"));
 const SectionData = [

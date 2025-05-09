@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
 import "./Products.css";
-const Modal = React.lazy(() => import("../utils/ui/modal/Modal"))
-const Dropzone = React.lazy(() => import("../utils/ui/dropzone/Dropzone"))
-import imgNotFound from "../img/404.jpg";
-import { Product } from "../../../backend/src/db/Model/Product";
-import LazyRender from "../utils/ui/LazyRender";
+const Modal = React.lazy(() => import("../../utils/ui/modal/Modal"))
+const Dropzone = React.lazy(() => import("../../utils/ui/dropzone/Dropzone"))
+import imgNotFound from "../../img/404.jpg";
+import { Product } from "../../../../backend/src/db/Model/Product";
+import LazyRender from "../../utils/ui/LazyRender";
 class Products extends React.Component {
     state = { products: [] as Product[] };
 
@@ -202,7 +202,7 @@ class Products extends React.Component {
                 const products = await response.json();
                 this.setState({ products });
             } else {
-                const fallback = await import("../../../db/products.json");
+                const fallback = await import("../../../../db/products.json");
                 this.setState({ products: fallback.default });
             }
         } catch (err) {

@@ -2,7 +2,7 @@ import React from "react";
 import SectionData from "./Sections";
 import "./NavigationMenu.css";
 import { Link } from "react-router-dom";
-import { ShowOnDevice , DeviceType } from "../utils/ui/ShowOnDevice";
+import { ShowOnDevice , DeviceType } from "../../utils/ui/ShowOnDevice";
 class NavigationMenu extends React.Component {
     state = {
         activeIndex: 0,

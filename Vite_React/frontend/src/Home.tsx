@@ -3,6 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './Home.css'
 class Home extends React.Component {
+
+  constructor(props: any) {
+    super(props);
+  }
+
   render() {
     return (
       <>

@@ -1,10 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Suspense, useState } from 'react';
-import NavigationMenu from './menu/NavigationMenu';
-import SectionData from './menu/Sections';
+import NavigationMenu from './pages/menu/NavigationMenu';
+import SectionData from './pages/menu/Sections';
 import WebStyling from './style/WebStyling';
 import './App.css';
 import Spinner from './utils/ui/Spinner';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+const queryClient = new QueryClient();
 
 function SectionsRute() {
   return SectionData.map((section, index) => (
@@ -14,7 +16,13 @@ function SectionsRute() {
       element={
         // <Suspense fallback={<div>Caricamento {section.title}...</div>}>
         <Suspense fallback={<Spinner absolute={true} ></Spinner>}>
-          {section.content}
+          {
+            (
+              <QueryClientProvider client={queryClient}>
+                {section.content}
+              </QueryClientProvider>
+            )
+          }
         </Suspense>
       }
     />
@@ -44,6 +52,7 @@ function Footer() {
 
 function App() {
   WebStyling.initializeTheme();
+
   return (
     <>
       <div className="app-container">
