@@ -1,26 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import { Product } from "../../../backend/src/db/Model/Product";
+import Products from "../pages/market/Products";
 
-const base_endpoint = "api/products";
+class ProductAPI {
+  static base_endpoint = "api/products";
 
-export const fetchProduct = async (): Promise<Product[]> => {
-   console.log("test");
-  const response = await fetch(`${base_endpoint}/GetProducts`);
-  if (!response.ok) throw new Error("Errore nell'avere la lista prodotti");
-  return await response.json();
-};
-
-export const GetProducts = () => {
-  const {
-    data,
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-  } = useQuery<Product[], Error>({
-    queryKey: ["products"],
-    queryFn: fetchProduct,
-  });
-
-  return { data, isLoading, isError, isSuccess, error };
-};
+  public static async GetProducts(): Promise<Products[] | undefined> {
+    const response = await fetch(`${ProductAPI.base_endpoint}/Test`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    });
+    if (!response.ok) throw new Error("Errore nell'avere la lista prodotti");
+    return await response.json();
+  }
+}
+export default ProductAPI;

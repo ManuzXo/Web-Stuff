@@ -10,17 +10,24 @@ class ProductController extends BaseController {
         console.log('ProductController initialized');
     }
 
+    @BaseController.Get("/Test")
+    public Test(req: Request, res: Response) {
+        setTimeout(() => {
+            res.send(this.productModel.GetProducts());
+        }, 3000);
+    }
+
+    @BaseController.Get("/GetProducts")
+    public GetProducts(req: Request, res: Response) {
+        res.send(this.productModel.GetProducts());
+    }
+
+
     @BaseController.Post("/InsertProduct")
     public InsertProduct(req: Request, res: Response) {
         const product: Product = req.body;
         this.productModel.InsertProduct(product);
         res.send({ message: 'Product inserted successfully' });
-    }
-
-
-    @BaseController.Get("/GetProducts")
-    public GetProducts(req: Request, res: Response) {
-        res.send(this.productModel.GetProducts());
     }
 
     @BaseController.Delete("/DeleteProduct")
