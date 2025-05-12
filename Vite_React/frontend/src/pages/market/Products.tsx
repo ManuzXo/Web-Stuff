@@ -5,9 +5,9 @@ const Dropzone = React.lazy(() => import("../../utils/ui/dropzone/Dropzone"))
 import imgNotFound from "../../img/404.jpg";
 import { Product } from "../../../../backend/src/db/Model/Product";
 import LazyRender from "../../utils/ui/LazyRender";
+import QueryTask from "../../utils/QueryTask";
 class Products extends React.Component {
     state = { products: [] as Product[] };
-
     base_endpoint = "api/products";
 
     modalInsert = React.createRef<React.ComponentRef<typeof Modal>>();
@@ -15,15 +15,12 @@ class Products extends React.Component {
     inputPrice = React.createRef<HTMLInputElement>();
     inputDesc = React.createRef<HTMLInputElement>();
     dropzoneRef = React.createRef<React.ComponentRef<typeof Dropzone>>();
-
-    async componentDidMount() {
-        await this.fetchProducts();
-    }
-
+    taskFetch = React.createRef<QueryTask<Product[] | undefined>>();
     render(): React.ReactNode {
         return (
             <>
-                {this.renderProducts()}
+
+                {this.renderQueryTasks()}
                 {this.renderUtils()}
                 {this.renderModal()}
             </>
@@ -33,7 +30,21 @@ class Products extends React.Component {
     // ----------------------------
     // UI BUILDING METHODS
     // ----------------------------
-
+    renderQueryTasks = () => {
+        return (
+            <QueryTask
+                ref={this.taskFetch}
+                fn={this.fetchProducts.bind(this, false)}
+                onData={(data) => {
+                    this.setState({ products: data });
+                    }
+                }
+                onSuccess={() => {
+                    return this.renderProducts();
+                }}
+            ></QueryTask>
+        )
+    }
     renderProducts = () => {
         const { products } = this.state;
 
@@ -160,7 +171,10 @@ class Products extends React.Component {
 
         if (response.ok) {
             console.log("Prodotto aggiunto con successo");
-            await this.fetchProducts();
+            if (this.taskFetch.current)
+                this.taskFetch.current.query();
+            else
+                await this.fetchProducts(true);
             this.clearModal();
         } else {
             console.error("Errore nell'aggiungere il prodotto");
@@ -187,7 +201,7 @@ class Products extends React.Component {
         });
     };
 
-    fetchProducts = async () => {
+    fetchProducts = async (settingState: boolean): Promise<Product[] | undefined> => {
         try {
             const response = await fetch(`${this.base_endpoint}/GetProducts`, {
                 headers: {
@@ -200,13 +214,19 @@ class Products extends React.Component {
 
             if (response.ok && contentType?.includes("application/json")) {
                 const products = await response.json();
-                this.setState({ products });
+                if (settingState)
+                    this.setState({ products });
+                return products as Product[];
+
             } else {
                 const fallback = await import("../../../../db/products.json");
-                this.setState({ products: fallback.default });
+                if (settingState)
+                    this.setState({ products: fallback.default });
+                return fallback.default as Product[];
             }
         } catch (err) {
             console.error("Errore nel caricamento prodotti", err);
+            return undefined;
         }
     };
 

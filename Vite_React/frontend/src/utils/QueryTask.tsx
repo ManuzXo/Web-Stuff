@@ -6,6 +6,7 @@ type QueryTaskParam<T> = {
     onLoading?: JSX.Element;
     onError?: JSX.Element;
     onSuccess?: (data: T) => JSX.Element; // usa i dati ricevuti
+    onData?: (data: T) => void;
 };
 
 export type QueryTaskState<T> = {
@@ -29,16 +30,7 @@ class QueryTask<T> extends React.Component<QueryTaskParam<T>, QueryTaskState<T>>
     }
 
     componentDidMount(): void {
-        this.setState({ isLoading: true });
-
-        this.props.fn()
-            .then((data) => {
-                this.setState({ data: data, isSuccess: true, isLoading: false });
-            })
-            .catch((reason: any) => {
-                const msg = typeof reason === 'string' ? reason : (reason.message || 'Errore sconosciuto');
-                this.setState({ isError: true, msgError: msg, isLoading: false });
-            });
+        this.query();
     }
 
     render() {
@@ -52,6 +44,29 @@ class QueryTask<T> extends React.Component<QueryTaskParam<T>, QueryTaskState<T>>
                 {isSuccess && (onSuccess ? onSuccess(data as T) : <span>Success</span>)}
             </div>
         );
+    }
+    query = () => {
+        this.defaultState();
+        this.setState({ isLoading: true });
+        this.props.fn()
+            .then((data) => {
+                if (this.props.onData)
+                    this.props.onData(data as T);
+                this.setState({ data: data, isSuccess: true, isLoading: false });
+            })
+            .catch((reason: any) => {
+                const msg = typeof reason === 'string' ? reason : (reason.message || 'Errore sconosciuto');
+                this.setState({ isError: true, msgError: msg, isLoading: false });
+            });
+    }
+    defaultState = () => {
+        this.setState({
+            data: null,
+            isLoading: false,
+            isError: false,
+            msgError: "",
+            isSuccess: false,
+        });
     }
 }
 
