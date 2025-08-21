@@ -34,6 +34,7 @@ class Render {
         this.uViewMatrix = this.gl.getUniformLocation(this.shaderProgram, "uViewMatrix");
 
         this.cameraEntity = new Camera(this.canvas);
+        this.AdjustResolution();
         console.log("Render Class", this);
     }
     SetGameObjects(objs) {
@@ -56,9 +57,28 @@ class Render {
         const aColor = this.aColor;
         const uGlobalColor = this.uGlobalColor;
         const uModelMatrix = this.uModelMatrix;
-        for (let obj of this.refGameObjects) {
-            obj.Draw({ aPosition, aColor }, { uGlobalColor, uModelMatrix });
+        if(this.refGameObjects){
+            for (let obj of this.refGameObjects) {
+                if(!obj) continue;
+                obj.Draw({ aPosition, aColor }, { uGlobalColor, uModelMatrix });
+            }
         }
         requestAnimationFrame(this.Render.bind(this));
     }
+    AdjustResolution() {
+        const dpr = window.devicePixelRatio || 1;
+        this.canvas.width = this.canvas.clientWidth * dpr;
+        this.canvas.height = this.canvas.clientHeight * dpr;
+        this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+
+        mat4_.perspective(
+            this.cameraEntity.projectionMatrix,
+            Math.PI / 4,
+            this.canvas.width / this.canvas.height,
+            0.1,
+            100.0
+        );
+
+    }
 }
+
