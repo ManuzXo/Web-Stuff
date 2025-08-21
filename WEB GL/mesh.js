@@ -14,10 +14,14 @@ class Mesh {
         this.vertexData = vtxData;
         this.indecesData = indData;
         this.colorData = clrData;
+        this.SetupAll();
+        console.log("Mesh Class", this);
+    }
+    SetupAll() {
+        if (!this.gl) return;
         this.SetupVertexBuffer();
         this.SetupIndicesBuffer();
         this.SetupColorBuffer();
-        console.log("Mesh Class", this);
     }
     SetupVertexBuffer() {
         this.vertexBuffer = this.gl.createBuffer();
@@ -37,18 +41,20 @@ class Mesh {
         }
     }
     BindVertexBuffer(aPosition) {
+        if (!this.vertexBuffer) return;
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexBuffer);
         this.gl.vertexAttribPointer(aPosition, 3, this.gl.FLOAT, false, 0, 0);
         this.gl.enableVertexAttribArray(aPosition);
     }
     BindColorBuffer(aColor) {
-        if (this.colorBuffer) {
-            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.colorBuffer);
-            this.gl.vertexAttribPointer(aColor, 4, this.gl.FLOAT, false, 0, 0);
-            this.gl.enableVertexAttribArray(aColor);
-        }
+        if (!this.colorBuffer) return;
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.colorBuffer);
+        this.gl.vertexAttribPointer(aColor, 4, this.gl.FLOAT, false, 0, 0);
+        this.gl.enableVertexAttribArray(aColor);
+
     }
     BindIndicesBuffer() {
+        if(!this.indexBuffer) return;
         this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     }
 }
@@ -191,5 +197,6 @@ class PyramidMesh3D extends Mesh {
         ]);
     }
 }
+
 
 

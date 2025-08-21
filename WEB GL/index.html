@@ -8,6 +8,11 @@
             padding: 0;
             height: 100%;
         }
+        #fileInput{
+            position: absolute;
+            top: 5%;
+            left: 20%;
+        }
         canvas {
             width: 100%;
             height: 100%;
@@ -17,6 +22,7 @@
 
 <body>
     <canvas id="myCanvas"></canvas>
+    <input type="file" id="fileInput" accept=".obj">
     <script id="vertex-shader" type="x-shader/x-vertex">
         attribute vec3 aPosition;
         uniform mat4 uModelMatrix;
@@ -40,6 +46,7 @@
             gl_FragColor = vColor;
         }
     </script>
+    <script src="OBJLoader.js"></script>
     <script src="camera.js"></script>
     <script src="mesh.js"></script>
     <script src="gameObject.js"></script>
@@ -51,9 +58,8 @@
         import { mat4, vec3 } from "https://cdn.jsdelivr.net/npm/gl-matrix@3.4.3/esm/index.js";
         mat4_ = mat4;
         vec3_ = vec3;
-        const sceneEntity = new Scene();
+        new OBJLoader();
         sceneEntity.Init();
-       
     </script>
 </body>
 

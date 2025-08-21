@@ -18,7 +18,9 @@ class GameObject {
         mat4_.fromScaling(this.modelMatrix, [sx, sy, sz]);
     }
 
-    Draw(gl, attribs, uniforms) {
+    Draw(attribs, uniforms) {
+        const gl = this.mesh.gl;
+        if(!gl) return;
         // bind buffers della mesh
         this.mesh.BindVertexBuffer(attribs.aPosition);
         // bind colori
@@ -29,7 +31,6 @@ class GameObject {
         // imposta uniform
         // gl.uniform4fv(uniforms.uGlobalColor, this.Color);
         gl.uniformMatrix4fv(uniforms.uModelMatrix, false, this.modelMatrix);
-
         // draw
         gl.drawElements(gl.TRIANGLES, this.mesh.indecesData.length, gl.UNSIGNED_SHORT, 0);
     }

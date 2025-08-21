@@ -3,10 +3,10 @@ class Scene {
     renderEntity;
     gameObjects;
     constructor() {
-        this.renderEntity = new Render();
-        this.setupGameObjects();
     }
     Init() {
+        this.renderEntity = new Render();
+        this.setupGameObjects();
         this.renderEntity.Render();
     }
     setupGameObjects() {
@@ -24,6 +24,11 @@ class Scene {
             firstTriangle,
             secondSquare,
         ];
+        this.renderEntity.SetGameObjects(this.gameObjects);
+    }
+    AddGameObject(obj){
+        this.gameObjects.push(obj);
+        obj.mesh.gl = this.renderEntity.gl;
         this.renderEntity.SetGameObjects(this.gameObjects);
     }
 }

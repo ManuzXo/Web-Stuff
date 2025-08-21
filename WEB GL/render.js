@@ -40,7 +40,7 @@ class Render {
         this.refGameObjects = objs;
     }
     Render() {
-
+        
         this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
         this.gl.clearColor(0.5, 0.5, 0.5, .5);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -58,7 +58,7 @@ class Render {
         const uGlobalColor = this.uGlobalColor;
         const uModelMatrix = this.uModelMatrix;
         for (let obj of this.refGameObjects) {
-            obj.Draw(this.gl, { aPosition, aColor }, { uGlobalColor, uModelMatrix });
+            obj.Draw({ aPosition, aColor }, { uGlobalColor, uModelMatrix });
         }
         requestAnimationFrame(this.Render.bind(this));
     }
