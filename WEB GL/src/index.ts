@@ -1,3 +1,3 @@
 import Scene from "./components/Scene";
-console.log("WEB GL FROM TYPESCRIPT");
+import "./globals"
 new Scene().Init();

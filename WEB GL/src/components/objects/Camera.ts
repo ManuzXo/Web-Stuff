@@ -13,10 +13,8 @@ export default class Camera {
   speed: number;
   sensitivity: number;
 
-  private refCanvas: HTMLCanvasElement;
 
-  constructor(canvas: HTMLCanvasElement) {
-    this.refCanvas = canvas;
+  constructor() {
     this.cameraPos = vec3.fromValues(0, 0, 5);
     this.cameraFront = vec3.fromValues(0, 0, -1); // direzione iniziale
     this.cameraUp = vec3.fromValues(0, 1, 0);
@@ -32,7 +30,7 @@ export default class Camera {
     mat4.perspective(
       this.projectionMatrix,
       Math.PI / 4,
-      this.refCanvas.width / this.refCanvas.height,
+      Entitys.canvas.width / Entitys.canvas.height,
       0.1,
       100.0
     );
@@ -65,15 +63,15 @@ export default class Camera {
 
   private addMouseListener() {
     const requestPointerLock =
-      this.refCanvas.requestPointerLock ||
-      (this.refCanvas as any).mozRequestPointerLock;
+      Entitys.canvas.requestPointerLock ||
+      (Entitys.canvas as any).mozRequestPointerLock;
 
-    this.refCanvas.onclick = () => {
-      requestPointerLock.call(this.refCanvas);
+    Entitys.canvas.onclick = () => {
+      requestPointerLock.call(Entitys.canvas);
     };
 
     document.addEventListener("mousemove", (e) => {
-      if (document.pointerLockElement === this.refCanvas) {
+      if (document.pointerLockElement === Entitys.canvas) {
         this.yaw += e.movementX * this.sensitivity;
         this.pitch -= e.movementY * this.sensitivity;
 

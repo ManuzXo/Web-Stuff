@@ -10,15 +10,13 @@ export default class GameObject {
         console.log("GameObject Class", this);
     }
 
-    Draw(attribs: any, uniforms: any) {
-        const gl = this.mesh.gl;
-        if (!gl) return;
-
-        this.mesh.BindVertexBuffer(attribs.aPosition);
-        this.mesh.BindColorBuffer(attribs.aColor);
+    Draw() {
+        const gl = Entitys.gl;
+        this.mesh.BindVertexBuffer(Entitys.aPosition);
+        this.mesh.BindColorBuffer(Entitys.aColor);
         this.mesh.BindIndicesBuffer();
 
-        gl.uniformMatrix4fv(uniforms.uModelMatrix, false, this.transform.modelMatrix);
+        gl.uniformMatrix4fv(Entitys.uModelMatrix, false, this.transform.modelMatrix);
         gl.drawElements(gl.TRIANGLES, this.mesh.indicesData.length, gl.UNSIGNED_SHORT, 0);
     }
 }

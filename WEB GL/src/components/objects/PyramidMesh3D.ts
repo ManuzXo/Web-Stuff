@@ -2,9 +2,8 @@ import Color from "../../utils/Color";
 import Mesh from "./Mesh";
 
 export default class PyramidMesh3D extends Mesh {
-  constructor(_gl: WebGLRenderingContext) {
+  constructor() {
     super(
-      _gl,
       PyramidMesh3D.GetVertex(),
       PyramidMesh3D.GetIndices(),
       PyramidMesh3D.GetColors()
