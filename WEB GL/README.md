@@ -16,3 +16,6 @@ Una semplice applicazione 3D basata su **WebGL puro** e JavaScript.
 - Sistema di gestione semplice per oggetti 3D (GameObjects).
 
 ---
+
+## 👁‍🗨 Hosting
+Puoi provare ad andare sul seguente indirizzo per provare l'applicativo https://manuzxo.github.io/Web-Stuff/WEB%20GL/
