@@ -36,8 +36,8 @@ export default class Camera {
     );
 
     this.updateCamera();
-    this.addKeyboardListener();
-    this.addMouseListener();
+    // this.addKeyboardListener();
+    // this.addMouseListener();
     this.addTouchControls();
   }
 
