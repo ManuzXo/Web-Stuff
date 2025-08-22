@@ -38,6 +38,7 @@ export default class Camera {
     this.updateCamera();
     this.addKeyboardListener();
     this.addMouseListener();
+    this.addTouchListener();
   }
 
   private addKeyboardListener() {
@@ -88,6 +89,56 @@ export default class Camera {
       }
     });
   }
+  private addTouchListener() {
+    let lastX = 0;
+    let lastY = 0;
+    let touching = false;
+
+    // inizio tocco
+    Entitys.canvas.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 1) {
+        touching = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    });
+
+    // movimento
+    Entitys.canvas.addEventListener("touchmove", (e) => {
+      if (touching && e.touches.length === 1) {
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - lastX;
+        const deltaY = touch.clientY - lastY;
+        lastX = touch.clientX;
+        lastY = touch.clientY;
+
+        // aggiorna angoli
+        this.yaw += deltaX * this.sensitivity;
+        this.pitch -= deltaY * this.sensitivity;
+
+        // clamp della pitch se vuoi evitare rotazioni complete verticali
+        this.pitch = Math.max(-89, Math.min(89, this.pitch));
+
+        // aggiorna direzione
+        const fx = Math.cos(this.radians(this.yaw)) * Math.cos(this.radians(this.pitch));
+        const fy = Math.sin(this.radians(this.pitch));
+        const fz = Math.sin(this.radians(this.yaw)) * Math.cos(this.radians(this.pitch));
+        this.cameraFront = vec3.normalize(vec3.create(), vec3.fromValues(fx, fy, fz));
+
+        this.updateCamera();
+      }
+    });
+
+    // fine tocco
+    Entitys.canvas.addEventListener("touchend", () => {
+      touching = false;
+    });
+
+    Entitys.canvas.addEventListener("touchcancel", () => {
+      touching = false;
+    });
+  }
+
 
   private updateCamera() {
     const target = vec3.add(vec3.create(), this.cameraPos, this.cameraFront);
