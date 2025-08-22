@@ -1,18 +1,13 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <style>
         html,
         body {
             margin: 0;
             padding: 0;
             height: 100%;
-        }
-        #fileInput{
-            position: absolute;
-            top: 5%;
-            left: 20%;
         }
         canvas {
             width: 100%;
@@ -23,7 +18,6 @@
 
 <body>
     <canvas id="myCanvas"></canvas>
-    <input type="file" id="fileInput" accept=".obj">
     <script id="vertex-shader" type="x-shader/x-vertex">
         attribute vec3 aPosition;
         uniform mat4 uModelMatrix;
@@ -48,22 +42,6 @@
         }
     </script>
     <script src="bundle.js"></script>
-    <!-- <script src="Transform.js"></script>
-    <script src="OBJLoader.js"></script>
-    <script src="Camera.js"></script>
-    <script src="Mesh.js"></script>
-    <script src="GameObject.js"></script>
-    <script src="Shader.js"></script>
-    <script src="Render.js"></script>
-    <script src="Scene.js"></script>
-    <script src="index.js"></script>
-    <script type="module">
-        import { mat4, vec3 } from "https://cdn.jsdelivr.net/npm/gl-matrix@3.4.3/esm/index.js";
-        mat4_ = mat4;
-        vec3_ = vec3;
-        new OBJLoader();
-        sceneEntity.Init();
-    </script> -->
 </body>
 
 </html>
