@@ -1,4 +1,7 @@
 class GameObject {
+    mesh;
+    color;
+    transform;
     constructor(mesh) {
         this.mesh = mesh;
         this.Color = [1.0, 1.0, 1.0, 1.0];
