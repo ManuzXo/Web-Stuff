@@ -1,9 +1,9 @@
-class Shader {
-    gl;
-    constructor(_gl) {
+export default class ShaderManager{
+    gl: WebGLRenderingContext;
+    constructor(_gl : WebGLRenderingContext) {
         this.gl = _gl;
     }
-    buildShaderProgram(vertexDomId, fragmentDomId) {
+    public buildShaderProgram(vertexDomId : string, fragmentDomId: string) : WebGLProgram {
         const program = this.gl.createProgram();
 
         const vertexShader = this.compileShader(vertexDomId, this.gl.VERTEX_SHADER);
@@ -24,10 +24,9 @@ class Shader {
         }
         return program;
     }
-    compileShader(id, type) {
-        const code = document.getElementById(id).firstChild.nodeValue;
-        const shader = this.gl.createShader(type);
-
+    compileShader(id : string, type : number) {
+        const code = (document.getElementById(id) as HTMLElement).firstChild?.nodeValue as string;
+        const shader = this.gl.createShader(type) as WebGLShader;
         this.gl.shaderSource(shader, code);
         this.gl.compileShader(shader);
 

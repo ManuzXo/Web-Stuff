@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",                // meglio di "es6" per l'import moderno
+    "moduleResolution": "node",        // dice a TS di cercare i moduli in node_modules
+    "outDir": "./dist",
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,           // permette import default e compatibilità CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true               // evita problemi con tipi interni
+  },
+  "include": ["src/**/*"]
+}

@@ -1,16 +1,20 @@
+import Render from "./gui/Render";
+import GameObject from "./objects/GameObject";
+import PyramidMesh3D from "./objects/PyramidMesh3D";
+import SquareMesh3D from "./objects/SquareMesh3D";
 
-class Scene {
-    renderEntity;
-    gameObjects;
+export default class Scene{
+    renderEntity: Render;
+    gameObjects: Array<GameObject>;
     constructor() {
+        this.renderEntity = new Render();
+        this.gameObjects = [];
     }
     Init() {
-        this.renderEntity = new Render();
         this.setupGameObjects();
         this.renderEntity.Render();
     }
     setupGameObjects() {
-        this.gameObjects = [];
         const gl = this.renderEntity.gl;
         const firstSquare = new GameObject(new SquareMesh3D(gl));
         firstSquare.transform.setPosition(-2, 0, 0);
@@ -27,7 +31,7 @@ class Scene {
         ];
         this.renderEntity.SetGameObjects(this.gameObjects);
     }
-    AddGameObject(obj){
+    AddGameObject(obj: GameObject){
         this.gameObjects.push(obj);
         obj.mesh.gl = this.renderEntity.gl;
         this.renderEntity.SetGameObjects(this.gameObjects);

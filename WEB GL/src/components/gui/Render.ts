@@ -1,43 +1,47 @@
+import { mat4 } from "gl-matrix";
+import Camera from "../objects/Camera";
+import GameObject from "../objects/GameObject";
+import ShaderManager from "../objects/ShaderManager";
 
-class Render {
-    canvas;
-    gl;
-    shaderManager;
-    shaderProgram;
-    cameraEntity;
+export default class Render {
+    canvas: HTMLCanvasElement;
+    gl: WebGLRenderingContext;
+    shaderManager: ShaderManager;
+    shaderProgram: WebGLProgram;
+    cameraEntity: Camera;
     // -- VERTEX SHADER --
-    uModelMatrix;
-    uProjectionMatrix;
-    uViewMatrix;
-    aPosition;
-    aColor;
+    uModelMatrix: WebGLUniformLocation;
+    uProjectionMatrix: WebGLUniformLocation;
+    uViewMatrix: WebGLUniformLocation;
+    aPosition: number;
+    aColor: number;
     // -- FRAG SHADER --
-    uGlobalColor;
+    uGlobalColor: WebGLUniformLocation;
 
-    refGameObjects;
+    refGameObjects: Array<GameObject> = [];
     constructor() {
-        this.canvas = document.getElementById("myCanvas");
-        this.gl = this.canvas.getContext("webgl", { antialias: false, depth: true });
-        this.shaderManager = new Shader(this.gl);
+        this.canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
+        this.gl = this.canvas.getContext("webgl", { antialias: false, depth: true }) as WebGLRenderingContext;
+        this.shaderManager = new ShaderManager(this.gl);
         this.shaderProgram = this.shaderManager.buildShaderProgram("vertex-shader", "fragment-shader");
 
-        this.uModelMatrix = this.gl.getUniformLocation(this.shaderProgram, "uModelMatrix");
+        this.uModelMatrix = this.gl.getUniformLocation(this.shaderProgram, "uModelMatrix") as WebGLUniformLocation;
         this.aPosition = this.gl.getAttribLocation(this.shaderProgram, "aPosition");
         this.aColor = this.gl.getAttribLocation(this.shaderProgram, "aColor");
 
         // this.gl.enableVertexAttribArray(this.aPosition);
         // this.gl.vertexAttribPointer(this.aPosition, 2, this.gl.FLOAT, false, 0, 0);
 
-        this.uGlobalColor = this.gl.getUniformLocation(this.shaderProgram, "uGlobalColor");
+        this.uGlobalColor = this.gl.getUniformLocation(this.shaderProgram, "uGlobalColor") as WebGLUniformLocation;
 
-        this.uProjectionMatrix = this.gl.getUniformLocation(this.shaderProgram, "uProjectionMatrix");
-        this.uViewMatrix = this.gl.getUniformLocation(this.shaderProgram, "uViewMatrix");
+        this.uProjectionMatrix = this.gl.getUniformLocation(this.shaderProgram, "uProjectionMatrix") as WebGLUniformLocation;
+        this.uViewMatrix = this.gl.getUniformLocation(this.shaderProgram, "uViewMatrix") as WebGLUniformLocation;
 
         this.cameraEntity = new Camera(this.canvas);
         this.AdjustResolution();
         console.log("Render Class", this);
     }
-    SetGameObjects(objs) {
+    SetGameObjects(objs: Array<GameObject>) {
         this.refGameObjects = objs;
     }
     Render() {
@@ -57,9 +61,9 @@ class Render {
         const aColor = this.aColor;
         const uGlobalColor = this.uGlobalColor;
         const uModelMatrix = this.uModelMatrix;
-        if(this.refGameObjects){
+        if (this.refGameObjects) {
             for (let obj of this.refGameObjects) {
-                if(!obj) continue;
+                if (!obj) continue;
                 obj.Draw({ aPosition, aColor }, { uGlobalColor, uModelMatrix });
             }
         }
@@ -71,7 +75,7 @@ class Render {
         this.canvas.height = this.canvas.clientHeight * dpr;
         this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
 
-        mat4_.perspective(
+        mat4.perspective(
             this.cameraEntity.projectionMatrix,
             Math.PI / 4,
             this.canvas.width / this.canvas.height,
@@ -81,4 +85,3 @@ class Render {
 
     }
 }
-
